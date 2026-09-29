@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}ComicCraft — Create{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">GENERATIVE AI PROJECT</p>
+  <h1>Turn an idea into a comic.</h1>
+  <p class="lead">Create a five-panel story with narration, dialogue, illustrations and a PDF export.</p>
+</section>
+
+<form class="card form-card" action="/generate" method="post" id="comic-form">
+  <label>Story Prompt
+    <textarea name="story_prompt" required maxlength="2000" placeholder="A brave fox discovers a hidden library in an enchanted forest..."></textarea>
+  </label>
+  <div class="grid">
+    <label>Main Character<input name="character_name" required maxlength="80" value="Milo"></label>
+    <label>Setting<input name="setting" required maxlength="120" value="Enchanted forest"></label>
+  </div>
+  <div class="grid">
+    <label>Story Tone
+      <select name="tone">
+        <option>Adventurous</option><option>Funny</option><option>Dramatic</option>
+        <option>Poetic</option><option>Light-hearted</option>
+      </select>
+    </label>
+    <label>Art Style
+      <select name="art_style">
+        <option>Comic book</option><option>Anime</option><option>Pixel art</option>
+        <option>Cartoon</option><option>Fantasy illustration</option>
+      </select>
+    </label>
+  </div>
+  <button type="submit" id="generate-button">✨ Generate My Comic</button>
+  <p class="hint">Generation can take a little time because each panel may require an image request.</p>
+</form>
+{% endblock %}

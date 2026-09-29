@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — ComicCraft{% endblock %}
+{% block content %}
+<div class="result-head">
+  <div><p class="eyebrow">YOUR COMIC</p><h1>{{ title }}</h1>
+  {% if demo_mode %}<p class="notice">Demo mode: placeholder illustrations were used because Hugging Face credentials were not configured.</p>{% endif %}
+  </div>
+  {% if pdf_url %}<a class="button secondary" href="{{ pdf_url }}" download>⬇ Download PDF</a>{% endif %}
+</div>
+
+{% for panel in panels %}
+<article class="panel card">
+  <div class="panel-number">PANEL {{ panel.panel_number }}</div>
+  <h2>{{ panel.title }}</h2>
+  <img src="{{ panel.image_url }}" alt="Illustration for panel {{ panel.panel_number }}" class="comic-image">
+  <p class="scene"><strong>Scene:</strong> {{ panel.scene_description }}</p>
+  <p><strong>Caption:</strong> {{ panel.caption }}</p>
+  <div class="dialogue">“{{ panel.dialogue }}”</div>
+  <p><strong>Narration:</strong> {{ panel.narration }}</p>
+  <details><summary>Show image prompt</summary><p class="muted">{{ panel.image_prompt }}</p></details>
+</article>
+{% endfor %}
+<div class="center"><a class="button" href="/">Create Another Comic</a></div>
+{% endblock %}
